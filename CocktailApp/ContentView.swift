@@ -7,8 +7,30 @@
 
 import SwiftUI
 
+
+// ContentView
+
 struct ContentView: View {
+    
+    
     var body: some View {
+        
+        NavigationView {
+            List {
+                ForEach(viewModel.DFI, id: \.self ){
+                    DFI in
+                    HStack {
+                        Text(DFI.strCategory)
+                            .bold()
+                    }
+                    .padding(3)
+                }
+            }
+            .navigationTitle("DrinksFilterIngredients")
+            .onAppear{
+                viewModel.fetch()
+            }
+        }
         
         VStack (alignment: .leading){
             
@@ -17,6 +39,7 @@ struct ContentView: View {
                 .font(.title)
                 .bold()
                 .padding()
+                
             
             HStack {
                 
@@ -34,7 +57,7 @@ struct ContentView: View {
                 .font(.title2)
                 .padding()
             
-            HStack (alignment: ){
+            HStack (){
                 
                 Image("margarita100px")
                     .renderingMode(.original)

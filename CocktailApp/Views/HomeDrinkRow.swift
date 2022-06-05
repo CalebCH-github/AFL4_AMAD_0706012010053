@@ -1,28 +1,23 @@
 //
-//  CocktailRow.swift
+//  HomeDrinkRow.swift
 //  CocktailApp
 //
-//  Created by MacBook Pro on 02/06/22.
+//  Created by MacBook Pro on 05/06/22.
 //
 
 import SwiftUI
 
-struct CocktailRow: View {
+struct HomeDrinkRow: View {
     var drink: Drink
     
     var body: some View {
         HStack {
-            URLImageDrinkRow(urlString: drink.strDrinkThumb)
-            
-            Text(drink.strDrink)
-                .font(.title)
-            
-            Spacer()
+            URLImageHomeDrinkRow(urlString: drink.strDrinkThumb)
         }
     }
 }
 
-struct URLImageDrinkRow: View {
+struct URLImageHomeDrinkRow: View {
     let urlString: String
     @State var data: Data?
     
@@ -30,16 +25,16 @@ struct URLImageDrinkRow: View {
         if let data = data, let uiimage = UIImage(data: data) {
             Image(uiImage: uiimage)
                 .resizable()
-                .frame(width: 100, height: 100)
+                .frame(width: 140, height: 140)
                 .cornerRadius(10)
-                .padding([.top, .bottom, .trailing])
+                .padding(.leading)
         }
         else {
             Image("")
                 .resizable()
-                .frame(width: 100, height: 100)
+                .frame(width: 140, height: 140)
                 .cornerRadius(10)
-                .padding([.top, .bottom, .trailing])
+                .padding(.leading)
                 .onAppear{
                     fetchData()
                 }
@@ -58,12 +53,12 @@ struct URLImageDrinkRow: View {
     }
 }
 
-struct DrinkRow_Previews: PreviewProvider {
+struct HomeDrinkRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CocktailRow(drink: drinks[0])
-            CocktailRow(drink: drinks[1])
+            HomeDrinkRow(drink: drinks[0])
+            HomeDrinkRow(drink: drinks[1])
         }
-        .previewLayout(.fixed(width: 300, height: 150))
+        .previewLayout(.fixed(width: 150, height: 150))
     }
 }

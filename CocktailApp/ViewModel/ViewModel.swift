@@ -10,9 +10,10 @@ import SwiftUI
 
 class ViewModelDrink: ObservableObject{
     @Published var drink: [Drink] = []
+    @Published var filteredDrink = [Drink]()
 
     func fetch(){
-        guard let url = URL(string: "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=c%22) else {
+        guard let url = URL(string: "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=m") else {
             return
         }
 
@@ -26,8 +27,9 @@ class ViewModelDrink: ObservableObject{
                 let drinks = try JSONDecoder().decode(Drinkclass.self, from: data)
                 DispatchQueue.main.async {
                     self?.drink = drinks.drinks
+                    self?.filteredDrink = drinks.drinks
                 }
-
+                
             }
             catch{
 
@@ -36,6 +38,8 @@ class ViewModelDrink: ObservableObject{
         }
         task.resume()
     }
+    
+    func search(with query: String = "") {
+        filteredDrink = query.isEmpty ? drink : drink.filter { $0.strDrink.localizedStandardContains(query) }
+    }
 }
-
-

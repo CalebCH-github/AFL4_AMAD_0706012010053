@@ -8,20 +8,31 @@
 import SwiftUI
 
 struct CocktailList: View {
+    @StateObject var viewModeldrink = ViewModelDrink()
+    @State var searchText = ""
     var body: some View {
-        NavigationView{
-        List(drinks) { drinks in
-            NavigationLink {
-                CocktailDetail()
-            } label: {
-                CocktailRow(drink: drinks)
+        NavigationView {
+            List {
+                ForEach(viewModeldrink.filteredDrink, id:\.self){ Drink in
+                    NavigationLink(destination: CocktailDetail(drink: Drink)) {
+                        CocktailRow(drink: Drink)
+                    }
+                }
             }
-        .navigationTitle("Cocktails")
+            .navigationTitle("Drink List")
+            .searchable(text: $searchText, prompt: "Find a drink")
+            .onChange(of: searchText) { data in
+                viewModeldrink.search(with: data)
+            }
+            .onAppear(){
+                viewModeldrink.search()
+                viewModeldrink.fetch()
+            }
         }
     }
 }
 
-struct CocktailList_Previews: PreviewProvider {
+struct DrinkList_Previews: PreviewProvider {
     static var previews: some View {
         CocktailList()
     }

@@ -19,8 +19,8 @@ struct CocktailList: View {
                     }
                 }
             }
-            .navigationTitle("Drink List")
-            .searchable(text: $searchText, prompt: "Find a drink")
+            .navigationTitle("Cocktail List")
+            .searchable(text: $searchText, prompt: "Search cocktail")
             .onChange(of: searchText) { data in
                 viewModeldrink.search(with: data)
             }

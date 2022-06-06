@@ -19,16 +19,17 @@ struct Home: View {
             VStack{
 
                 HStack{
-                    Text("Recommended Drinks")
+                    Text("Recommended Cocktails")
                         .font(.title)
                         .fontWeight(.bold)
                         .padding(8.0)
+//                        .foregroundColor(.orange)
                     Spacer()
                 }
                 
                 GeometryReader { proxy in
                     TabView(selection: $currentIndex) {
-                        ForEach(1..<4) { num in
+                        ForEach(1..<5) { num in
                             Image("Image\(num)")
                                 .renderingMode(.original)
                                 .resizable()
@@ -42,7 +43,7 @@ struct Home: View {
                     .frame(width: .infinity, height: 250)
                     .onReceive(timer, perform: { _ in
                         withAnimation{
-                            currentIndex = currentIndex < 3 ? currentIndex + 1 : 0
+                            currentIndex = currentIndex < 4 ? currentIndex + 1 : 0
                         }
                     })
                 }.frame(height: 250)
@@ -51,10 +52,11 @@ struct Home: View {
                 }
 
                 HStack{
-                    Text("Drinks")
+                    Text("Cocktails")
                         .font(.title)
                         .fontWeight(.bold)
                         .padding(8.0)
+//                        .foregroundColor(.orange)
                     Spacer()
                 }
 
@@ -76,6 +78,7 @@ struct Home: View {
                         .font(.title)
                         .fontWeight(.bold)
                         .padding(8.0)
+//                        .foregroundColor(.orange)
                     Spacer()
                 }
 
@@ -118,9 +121,12 @@ struct TextOverlay: View {
         ZStack(alignment: .bottomLeading) {
             gradient
             VStack(alignment: .leading) {
-                Text("Cocktail")
+                Text("Refreshing cocktails")
                     .font(.title2)
                     .bold()
+                    .foregroundColor(.orange)
+//                    .underline()
+                    
             }
             .padding()
         }
@@ -131,5 +137,6 @@ struct TextOverlay: View {
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home()
+//            .background(.black)
     }
 }

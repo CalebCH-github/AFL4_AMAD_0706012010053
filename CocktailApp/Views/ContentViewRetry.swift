@@ -24,18 +24,21 @@ struct ContentViewRetry: View {
             Home()
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
+                        .foregroundColor(.orange)
                 }
                 .tag(Tab.home)
 
             CocktailList()
                 .tabItem {
                     Label("Drinks", systemImage: "takeoutbag.and.cup.and.straw.fill")
+                        .foregroundColor(.orange)
                 }
                 .tag(Tab.drinks)
             
             IngredientList()
                 .tabItem {
                     Label("Ingredients", systemImage: "list.bullet")
+                        .foregroundColor(.orange)
                 }
                 .tag(Tab.ingredients)
         }
@@ -53,7 +56,7 @@ struct OnBoardingView: View {
         TabView {
             PageView(
                 title: "Welcome to our app",
-                subtitle: "In this app, you could find out a lot of cocktails and how to make them",
+                subtitle: "In this app, you can find out a lot of cocktails and how to make them",
                 swipeleft: "Swipe Left to Continue",
                 imageName: "HomeIcon",
                 showDismissButton: false,
@@ -62,7 +65,7 @@ struct OnBoardingView: View {
             
             PageView(
                 title: "Lots of cocktails",
-                subtitle: "Scroll and find out a lot of amazing cocktails!",
+                subtitle: "Scroll and find a lot of amazing cocktails!",
                 swipeleft: "Swipe Left to Continue",
                 imageName: "DrinkIcon",
                 showDismissButton: false,
@@ -71,7 +74,7 @@ struct OnBoardingView: View {
             
             PageView(
                 title: "Ingredient Details",
-                subtitle: "You could also see a lot of ingredients that you might not know before",
+                subtitle: "You can also see a lot of ingredients that you might not know before",
                 swipeleft: "",
                 imageName: "IngredientIcon",
                 showDismissButton: true,
@@ -119,9 +122,10 @@ struct PageView: View {
                     shouldShowOnboarding.toggle()
                 } label: {
                     Text("Get Started")
-                        .frame(width: 200, height: 50)
-                        .background(Color.green)
-                        .cornerRadius(6)
+                        .font(.system(size: 18))
+                        .frame(width: 200, height: 60)
+                        .background(Color.orange)
+                        .cornerRadius(15)
                 }
 
             }

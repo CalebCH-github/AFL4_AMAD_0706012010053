@@ -34,8 +34,8 @@ struct Home: View {
                                 .renderingMode(.original)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .cornerRadius(5)
-                                .overlay(Color.black.opacity(0.15))
+                                .cornerRadius(0)
+                                .overlay(Color.black.opacity(0.27))
                                 .tag(num)
                         }
                     }.tabViewStyle(PageTabViewStyle())
@@ -71,6 +71,7 @@ struct Home: View {
                         viewModeldrink.fetch()
                     }
                     .frame(height: 150)
+//                    .background(.gray)
                 }
 
                 HStack{
@@ -90,11 +91,13 @@ struct Home: View {
                                     .resizable()
                                     .frame(width: 155, height: 155)
                                     .cornerRadius(5)
+//                                    .border(.orange)
+//                                    .cornerRadius(15)
+//                                    .padding(10)
                             }
                         }
                     }
                 }.padding(.bottom, 40)
-                
             }
         }
         .frame(
